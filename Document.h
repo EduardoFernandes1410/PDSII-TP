@@ -18,6 +18,10 @@ class Document{
     // Retorna as palavras que o documento contem
     vector<string> words() const;
 
+    double Document::calculateSim(Document doc);
+
+    void Document::make_coords(set<string> vocabulary);
+    
   private:
     // Nome do documento
     string name_;

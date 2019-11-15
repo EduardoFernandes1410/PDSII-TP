@@ -21,13 +21,9 @@ int main (){
   vocabulary.insert(w4);
   vocabulary.insert(w5);
 
-  // for(auto i : vocabulary) {
-  //   cout << i.name() << endl;
-  // }
-  // cout << vocabulary.find(w1)->name() << endl;
 
   try {
-    Document d1("./documents/59909");
+    Document d1("./documents/d1.txt");
 
     vector<string> words = d1.words();
     for(auto i : words) {
