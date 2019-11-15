@@ -5,10 +5,9 @@
 #include <map>
 #include <unordered_map>
 #include <math.h>
-
-// #include "Document.h"
+#include "InvertedIndex.h"
 #include "Word.h"
-// #include "InvertedIndex.h"
+
 
 // Construtor
 Word::Word(string name) {
@@ -24,9 +23,11 @@ bool Word::operator<(const Word &x) const {
 string Word::name() const {
   return this->name_;
 }
-// int Word::tf(Document doc){
-//}
 
-// double Word::idf(int N, InvertedIndex index){
-//   return log( N / index.get_nx(this));
-// }
+int Word::tf(Document doc, InvertedIndex index){
+  return index.getTf(*this, doc);
+}
+
+double Word::idf(int N, InvertedIndex index){
+  return log( N / index.getNx(*this));
+}

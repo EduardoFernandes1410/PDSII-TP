@@ -7,7 +7,10 @@
 #include <locale>
 #include <unordered_map>
 #include <fstream>
+#include <math.h>
+
 #include "Document.h"
+#include "InvertedIndex.h"
 using namespace std;
 
 // Construtores
@@ -54,4 +57,31 @@ vector<string> Document::words() const {
 // Retorna nome do documento
 string Document::name() const {
   return this->name_;
+}
+
+double Document::cosSimilarity(Document query){
+  double numerator = 0, denominator, denominatorPt1 = 0, denominatorPt2 = 0;
+  double W_dj, W_query;
+
+  int i = 0;
+  for(auto it : this->coords_ ){
+    W_dj = this->coords_[i];
+    W_query = query.coords_[i];
+    numerator += (W_dj * W_query);
+    denominatorPt1 += pow(W_dj, 2);
+    denominatorPt2 += pow(W_query, 2);
+  }
+
+  denominator = (sqrt(denominatorPt1)*sqrt(denominatorPt2));
+
+  return (numerator/denominator);
+  }
+
+void Document::makeCoords(InvertedIndex index){
+  int i = 0;
+  for(auto word : index.vocabulary() ){
+      this->coords_[i] = word.tf(*this, index) * (word.idf(index.vocabulary().size(), index));
+    i++;
+  }
+
 }
