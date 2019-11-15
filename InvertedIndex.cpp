@@ -1,12 +1,14 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string>
+#include <vector>
 
-class InvertedIndex{
-  public:
-    InvertedIndex::InvertedIndex(vector<string>){
-      for( auto it : &n){
-          fopen() 
-      }
-    }
-  private:
+
+
+InvertedIndex::InvertedIndex(vector<Documents>){
+  for( auto it : &n){
+      fopen() 
+  }
 }
+
+
