@@ -7,16 +7,13 @@
 
 class Word{
   public:
-    bool Word::operator<(Word x);
+    bool operator<(Word x);
 
-    double Word::
+    int tf( Document doc);
 
-    int Word::tf()
+    // Recebe o numero de documentos, e o indice invertido em questao
+    double idf(int N, InvertedIndex index);
 
-    int Word::nx()
-
-    double Word::idf()
-    
   private:
     string name_;
 

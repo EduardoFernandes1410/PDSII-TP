@@ -7,9 +7,9 @@
 
 class Document{
   public:
-    Document::Document(string path);
+    Document(string path);
 
-    vector<string> Document::words();
+    vector<string> words();
 
   private:
     // Guarda as palavras, já filtradas, presentes no documento
