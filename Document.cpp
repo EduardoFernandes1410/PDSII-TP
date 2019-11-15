@@ -10,8 +10,12 @@
 #include "Document.h"
 using namespace std;
 
-// Construtor
+// Construtores
+Document::Document(){}
+
 Document::Document(string path){
+  this->name_ = path;
+
   string word, new_word;
   locale loc;
 
@@ -45,4 +49,9 @@ bool Document::operator<(const Document &x) const {
 // Retorna as palavras do documento
 vector<string> Document::words() const {
   return this->words_;
+}
+
+// Retorna nome do documento
+string Document::name() const {
+  return this->name_;
 }

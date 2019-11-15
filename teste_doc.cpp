@@ -4,11 +4,13 @@
 #include <string>
 #include "Document.h"
 #include "Word.h"
-// #include "InvertedIndex.h"
+#include "InvertedIndex.h"
 using namespace std;
 
 int main (){
   set<Word> vocabulary;
+  set<Document> docs;
+
   Word w1("batata");
   Word w2("frita");
   Word w3("gosto");
@@ -26,14 +28,28 @@ int main (){
   // }
   // cout << vocabulary.find(w1)->name() << endl;
 
-  try {
-    Document d1("./documents/59909");
+  Document d1, d2, d3;
 
-    vector<string> words = d1.words();
-    for(auto i : words) {
-      cout << i << endl;
-    }
+  try {
+    d1 = Document("./documents/d1.txt");
+    d2 = Document("./documents/d2.txt");
+    d3 = Document("./documents/d3.txt");
+
+    docs.insert(d1);
+    docs.insert(d2);
+    docs.insert(d3);
   } catch(...) {
     cout << "deu pau" << endl;
+  }
+
+  InvertedIndex index(docs);
+  map<Word, map<Document, int> > invertedIndex = index.index();
+
+  for(auto k : invertedIndex) {
+    cout << k.first.name() << endl;
+
+    for(auto v : k.second) {
+      cout << "\t" << v.first.name() << " - " << v.second << endl;
+    }
   }
 }

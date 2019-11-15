@@ -11,12 +11,15 @@ using namespace std;
 
 class Document{
   public:
-    // Construtor
+    // Construtores
+    Document();
     Document(string path);
     // Operador < para ser possivel colocar em um set
     bool operator<(const Document &x) const;
     // Retorna as palavras que o documento contem
     vector<string> words() const;
+    // Retorna nome do documento
+    string name() const;
 
   private:
     // Nome do documento
