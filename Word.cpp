@@ -6,22 +6,27 @@
 #include <unordered_map>
 #include <math.h>
 
-#include "Document.h"
+// #include "Document.h"
 #include "Word.h"
-#include "InvertedIndex.h"
+// #include "InvertedIndex.h"
 
-bool Word::operator<(Word x){}
-
-int Word::tf(Document doc){
-  int count = 0;
-  for( int i = 0; i < doc.words().size(); i ++){
-    if( doc.words()[i] == this->name_){
-      count ++;
-    }
-  }
-  return count;
+// Construtor
+Word::Word(string name) {
+  this->name_ = name;
 }
 
-double Word::idf(int N, InvertedIndex index){
-  return log( N / index.get_nx(this));
+// Operador <
+bool Word::operator<(const Word &x) const {
+  return this->name_ < x.name_;
 }
+
+// Nome da palavra
+string Word::name() const {
+  return this->name_;
+}
+// int Word::tf(Document doc){
+//}
+
+// double Word::idf(int N, InvertedIndex index){
+//   return log( N / index.get_nx(this));
+// }
