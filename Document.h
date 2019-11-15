@@ -18,10 +18,11 @@ class Document{
     // Retorna as palavras que o documento contem
     vector<string> words() const;
 
-    double Document::calculateSim(Document doc);
+    double calculateSim(Document query);
 
-    void Document::make_coords(set<string> vocabulary);
-    
+    void make_coords(set<Word> vocabulary, InvertedIndex index);
+
+
   private:
     // Nome do documento
     string name_;

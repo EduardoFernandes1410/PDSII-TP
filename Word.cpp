@@ -24,9 +24,11 @@ bool Word::operator<(const Word &x) const {
 string Word::name() const {
   return this->name_;
 }
-// int Word::tf(Document doc){
-//}
 
-// double Word::idf(int N, InvertedIndex index){
-//   return log( N / index.get_nx(this));
-// }
+int Word::tf(Document doc, InvertedIndex index){
+  return index.get_tf(*this, doc);
+}
+
+double Word::idf(int N, InvertedIndex index){
+  return log( N / index.get_nx(this));
+}
