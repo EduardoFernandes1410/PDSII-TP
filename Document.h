@@ -13,13 +13,23 @@ class Document{
   public:
     // Construtores
     Document();
+
     Document(string path);
+
     // Operador < para ser possivel colocar em um set
     bool operator<(const Document &x) const;
+
     // Retorna as palavras que o documento contem
     vector<string> words() const;
+
     // Retorna nome do documento
     string name() const;
+
+  double cosSimilarity(Document query);
+
+  void makeCoords(InvertedIndex index);
+
+
 
   private:
     // Nome do documento
