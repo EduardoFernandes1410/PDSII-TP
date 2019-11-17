@@ -32,6 +32,10 @@ set<Word> InvertedIndex::vocabulary() {
   return this->vocabulary_;
 }
 
+int InvertedIndex::getNx(Word target){
+  return this->index_[target].size();
+}
+
 // Retorna tf da palavra alvo em funcao do arquivo dado
 int InvertedIndex::getTf(Word target, Document doc) {
   return this->index_[target][doc];

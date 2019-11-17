@@ -23,11 +23,6 @@ int main (){
   vocabulary.insert(w4);
   vocabulary.insert(w5);
 
-  // for(auto i : vocabulary) {
-  //   cout << i.name() << endl;
-  // }
-  // cout << vocabulary.find(w1)->name() << endl;
-
   Document d1, d2, d3;
 
   try {
