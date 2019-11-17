@@ -25,17 +25,18 @@ class Document{
     // Retorna nome do documento
     string name() const;
 
-  double cosSimilarity(Document query);
+    double cosSimilarity(Document query);
 
-  void makeCoords(InvertedIndex index);
-
+    void makeCoords(InvertedIndex index);
 
 
   private:
     // Nome do documento
     string name_;
+    
     // Guarda as palavras, já filtradas, presentes no documento
     vector<string> words_;
+
     // Guarda o vetor no R_n com a importância  do documento para cada P_i
     vector<double> coords_;
 };

@@ -13,14 +13,18 @@ class Word {
   public:
     // Construtor
     Word(string name);
+
     // Operador < para ser possivel colocar em um set
     bool operator<(const Word &x) const;
+
     // Retorna o nome da palavra
     string name() const;
 
-  int tf(Document doc, InvertedIndex index);
+    // Returns the frequency of the word in the document in question
+    int tf(Document doc, InvertedIndex index);
 
-  double idf(int N, InvertedIndex index);
+    // Returns the importance of the word in the document in question
+    double idf(int N, InvertedIndex index);
 
   private:
     string name_;
