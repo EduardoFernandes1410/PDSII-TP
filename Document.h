@@ -7,7 +7,11 @@
 #include <vector>
 #include <map>
 #include <unordered_map>
+
 using namespace std;
+
+class Word;
+class InvertedIndex;
 
 class Document{
   public:
@@ -29,14 +33,11 @@ class Document{
 
     void makeCoords(InvertedIndex index);
 
-
   private:
     // Nome do documento
     string name_;
-    
     // Guarda as palavras, já filtradas, presentes no documento
     vector<string> words_;
-
     // Guarda o vetor no R_n com a importância  do documento para cada P_i
     vector<double> coords_;
 };

@@ -5,9 +5,10 @@
 #include <map>
 #include <unordered_map>
 #include <math.h>
-#include "InvertedIndex.h"
-#include "Word.h"
 
+#include "InvertedIndex.h"
+#include "Document.h"
+#include "Word.h"
 
 // Construtor
 Word::Word(string name) {

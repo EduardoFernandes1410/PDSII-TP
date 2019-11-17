@@ -8,9 +8,9 @@
 #include <unordered_map>
 #include <fstream>
 #include <math.h>
-
-#include "Document.h"
 #include "InvertedIndex.h"
+#include "Document.h"
+#include "Word.h"
 using namespace std;
 
 // Construtores
@@ -71,17 +71,16 @@ double Document::cosSimilarity(Document query){
     denominatorPt1 += pow(W_dj, 2);
     denominatorPt2 += pow(W_query, 2);
   }
-
   denominator = (sqrt(denominatorPt1)*sqrt(denominatorPt2));
 
   return (numerator/denominator);
-  }
+}
 
 void Document::makeCoords(InvertedIndex index){
   int i = 0;
   for(auto word : index.vocabulary() ){
-      this->coords_[i] = word.tf(*this, index) * (word.idf(index.vocabulary().size(), index));
+      // this->coords_[i] = word.tf(*this, index) * word.idf((int)index.vocabulary().size(), index);
+      this->coords_[i] = word.tf(*this, index) * word.idf(5, index);
     i++;
   }
-
 }
