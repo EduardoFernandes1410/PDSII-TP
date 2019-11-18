@@ -11,7 +11,7 @@
 using namespace std;
 
 // Construtor
-InvertedIndex::InvertedIndex(set<Document> docs){
+InvertedIndex::InvertedIndex(vector<Document> docs){
   vector<string> words;
 
   for(auto doc : docs) {
@@ -20,6 +20,7 @@ InvertedIndex::InvertedIndex(set<Document> docs){
     for(auto word : words) {
       Word w(word);
       this->index_[w][doc] += 1;
+      this->vocabulary_.insert(w);
     }
   }
 }

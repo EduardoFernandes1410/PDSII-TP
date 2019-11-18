@@ -20,6 +20,8 @@ class Document{
 
     Document(string path);
 
+    Document(string query, bool flag);
+
     // Operador < para ser possivel colocar em um set
     bool operator<(const Document &x) const;
 
@@ -29,9 +31,15 @@ class Document{
     // Retorna nome do documento
     string name() const;
 
-    double cosSimilarity(Document query);
+    // PRE-REQUISITO: makeCoords já foi executado antes
+    double cosSimilarity(Document &query);
 
-    void makeCoords(InvertedIndex index);
+    void makeCoords(InvertedIndex index, int N);
+
+    // TIRAR ISSO DEPOIS
+    vector<double> coords() const;
+
+    void makeQueryCoords(InvertedIndex index, int N);
 
   private:
     // Nome do documento

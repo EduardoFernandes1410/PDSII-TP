@@ -23,10 +23,6 @@ int main (){
   vocabulary.insert(w4);
   vocabulary.insert(w5);
 
-  // for(auto i : vocabulary) {
-  //   cout << i.name() << endl;
-  // }
-  // cout << vocabulary.find(w1)->name() << endl;
 
   Document d1, d2, d3;
 
@@ -51,5 +47,11 @@ int main (){
     for(auto v : k.second) {
       cout << "\t" << v.first.name() << " - " << v.second << endl;
     }
+  }
+
+  Document doc("eu sou:? --muito !legal bonito", true);
+  vector<string> palavras = doc.words();
+  for( auto palavra : palavras){
+    cout << palavra << endl;
   }
 }

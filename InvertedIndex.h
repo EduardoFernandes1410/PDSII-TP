@@ -15,7 +15,7 @@ class Document;
 class InvertedIndex{
   public:
     // Recebe um vetor com os documentos e gera o indice invertido
-    InvertedIndex(set<Document> docs);
+    InvertedIndex(vector<Document> docs);
     // Retorna o index
     map<Word, map<Document, int> > index();
     // Retorna vocabulario

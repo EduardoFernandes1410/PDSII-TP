@@ -1,5 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
+#include <iostream>
 #include <string>
 #include <vector>
 #include <map>
@@ -10,6 +9,7 @@
 #include "Document.h"
 #include "Word.h"
 
+using namespace std;
 // Construtor
 Word::Word(string name) {
   this->name_ = name;
@@ -25,10 +25,10 @@ string Word::name() const {
   return this->name_;
 }
 
-int Word::tf(Document doc, InvertedIndex index){
+int Word::tf(Document doc, InvertedIndex index) const{
   return index.getTf(*this, doc);
 }
 
-double Word::idf(int N, InvertedIndex index){
-  return log( N / index.getNx(*this));
+double Word::idf(int N, InvertedIndex index) const{
+  return log( (double)N / index.getNx(*this));
 }
