@@ -28,6 +28,8 @@ class Word {
 
   private:
     string name_;
+
+  friend class Teste;
 };
 
 #endif
