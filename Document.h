@@ -34,14 +34,13 @@ class Document{
     // PRE-REQUISITO: makeCoords já foi executado antes
     double cosSimilarity(Document &query);
 
-    void makeCoords(InvertedIndex index, int N);
+    // Gera coordenadas do vetor do documento
+    virtual void makeCoords(InvertedIndex index, int N);
 
     // TIRAR ISSO DEPOIS
     vector<double> coords() const;
 
-    void makeQueryCoords(InvertedIndex index, int N);
-
-  private:
+  protected:
     // Nome do documento
     string name_;
     // Guarda as palavras, já filtradas, presentes no documento

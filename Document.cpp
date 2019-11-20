@@ -34,26 +34,10 @@ Document::Document(string path){
       if(isalpha(word[i]) || isdigit(word[i]))
         new_word.push_back(tolower(word[i], loc));
     }
-    if(new_word != "") (this->words_).push_back(new_word); 
+    if(new_word != "") (this->words_).push_back(new_word);
   }
   fin.close();
 };
-
-Document::Document(string query, bool flag){
-  cout << "CRIANDO O DOC QUERY \n";
-  string new_word;
-  locale loc;
-  for(int i = 0; i < query.size(); i++){
-    if(isalpha(query[i]) || isdigit(query[i]))
-      new_word.push_back(tolower(query[i], loc));
-    else if(query[i] == ' ' ){
-      if(new_word != "") (this->words_).push_back(new_word);
-      new_word.clear();
-    }
-  }
-  if(new_word != "") (this->words_).push_back(new_word);
-}
-
 
 // Operator <
 bool Document::operator<(const Document &x) const {
@@ -80,18 +64,6 @@ void Document::makeCoords(InvertedIndex index, int N){
   }
 }
 
-
-void Document::makeQueryCoords(InvertedIndex index, int N){
-  vector<Document> querySet;
-  querySet.push_back(*this);
-  InvertedIndex queryIndex(querySet);
-  int i = 0;
-  for(auto word : index.vocabulary() ){
-    this->coords_.push_back(word.tf(*this, queryIndex) * word.idf(N, index));
-    i++;
-  }
-}
-
 vector<double> Document::coords() const{
   return this->coords_;
 };
@@ -99,7 +71,7 @@ vector<double> Document::coords() const{
 double Document::cosSimilarity(Document &query){
   double numerator = 0, denominator, denominatorPt1 = 0, denominatorPt2 = 0;
   double W_dj, W_query;
-  
+
   int i = 0;
   for(auto it : this->coords_ ){
     // cout << i;

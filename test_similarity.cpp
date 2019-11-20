@@ -4,6 +4,7 @@
 #include <string>
 #include "Document.h"
 #include "Word.h"
+#include "Query.h"
 #include "InvertedIndex.h"
 using namespace std;
 
@@ -57,10 +58,10 @@ int main (){
     cout << endl;
     i++;
   }
-  
 
-  Document queryDoc("A B", true);
-  queryDoc.makeQueryCoords(index, (int)docs.size());
+
+  Query queryDoc("A B");
+  queryDoc.makeCoords(index, (int)docs.size());
   cout << "W_query: ";
   for(auto w : queryDoc.coords() ){
     cout << w << " ";
@@ -70,7 +71,7 @@ int main (){
   cout << "CALCULANDO AS SIMILARIDADES: \n";
   i = 1;
   for( auto doc : docs){
-    cout << "sim(D" << i << ",Query): " << queryDoc.cosSimilarity(doc) << endl;    
+    cout << "sim(D" << i << ",Query): " << queryDoc.cosSimilarity(doc) << endl;
     i++;
   }
   cout << endl;
