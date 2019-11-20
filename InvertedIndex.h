@@ -1,12 +1,12 @@
 #ifndef INVERTEDINDEX_H
 #define INVERTEDINDEX_H
 
-#include <stdlib.h>
-#include <stdio.h>
 #include <string>
 #include <vector>
 #include <map>
 #include <set>
+#include "Document.h"
+#include "Word.h"
 using namespace std;
 
 class Word;

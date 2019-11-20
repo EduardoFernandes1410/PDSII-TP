@@ -1,21 +1,9 @@
-#include <iostream>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string>
-#include <vector>
-#include <map>
-#include <locale>
-#include <unordered_map>
-#include <fstream>
-#include <math.h>
-#include "InvertedIndex.h"
 #include "Document.h"
-#include "Word.h"
-using namespace std;
 
-// Construtores
+// Construtor vazio
 Document::Document(){}
 
+// Construtor usando path para arquivo
 Document::Document(string path){
   this->name_ = path;
 
@@ -44,6 +32,37 @@ bool Document::operator<(const Document &x) const {
   return this->name_ < x.name_;
 }
 
+// N eh o numero de documentos em questao
+void Document::makeCoords(InvertedIndex index, int N){
+  for(auto word : index.vocabulary() ){
+    this->coords_.push_back(word.tf(*this, index) * word.idf(N, index));
+  }
+}
+
+double Document::cosSimilarity(Document &query){
+  double numerator = 0, denominator, denominatorPt1 = 0, denominatorPt2 = 0;
+  double W_dj, W_query;
+
+  int i = 0;
+  for(auto it : this->coords_ ){
+    W_dj = it;
+    W_query = query.coords_[i];
+    numerator += (W_dj * W_query);
+    denominatorPt1 += pow(W_dj, 2);
+    denominatorPt2 += pow(W_query, 2);
+
+    i++;
+  }
+  denominator = (sqrt(denominatorPt1)*sqrt(denominatorPt2));
+
+  return (numerator/denominator);
+}
+
+// Retorna o vetor de coordenadas do documento
+vector<double> Document::coords() const {
+  return this->coords_;
+};
+
 // Retorna as palavras do documento
 vector<string> Document::words() const {
   return this->words_;
@@ -52,43 +71,4 @@ vector<string> Document::words() const {
 // Retorna nome do documento
 string Document::name() const {
   return this->name_;
-}
-
-
-// N eh o numero de documentos em questao
-void Document::makeCoords(InvertedIndex index, int N){
-  int i = 0;
-  for(auto word : index.vocabulary() ){
-    this->coords_.push_back(word.tf(*this, index) * word.idf(N, index));
-    i++;
-  }
-}
-
-vector<double> Document::coords() const{
-  return this->coords_;
-};
-
-double Document::cosSimilarity(Document &query){
-  double numerator = 0, denominator, denominatorPt1 = 0, denominatorPt2 = 0;
-  double W_dj, W_query;
-
-  int i = 0;
-  for(auto it : this->coords_ ){
-    // cout << i;
-    W_dj = this->coords_[i];
-    // cout << "aaaaa";
-    // printf("Query coords size: %d\n", query.coords().size());
-    W_query = query.coords_[i];
-    // cout << "bbb";
-    numerator += (W_dj * W_query);
-    // cout << "cccc";
-    denominatorPt1 += pow(W_dj, 2);
-    // cout << "dddd";
-    denominatorPt2 += pow(W_query, 2);
-    // cout << "eeee";
-    i++;
-  }
-  denominator = (sqrt(denominatorPt1)*sqrt(denominatorPt2));
-
-  return (numerator/denominator);
 }

@@ -1,4 +1,3 @@
-#include <locale>
 #include "Query.h"
 
 Query::Query(string query){
@@ -10,11 +9,11 @@ Query::Query(string query){
       new_word.push_back(tolower(query[i], loc));
 
     else if(query[i] == ' ' ){
-      if(new_word != "") (this->words_).push_back(new_word);
+      if(new_word != "") (this->words_.push_back(new_word));
       new_word.clear();
     }
   }
-  if(new_word != "") (this->words_).push_back(new_word);
+  if(new_word != "") (this->words_.push_back(new_word));
 }
 
 

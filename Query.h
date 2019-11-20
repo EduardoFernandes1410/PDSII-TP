@@ -1,13 +1,12 @@
 #ifndef QUERY_H
 #define QUERY_H
 
-#include <stdlib.h>
-#include <stdio.h>
 #include <string>
 #include <vector>
 #include <map>
 #include <set>
 #include <utility>
+#include <locale>
 #include <unordered_map>
 #include "Word.h"
 #include "InvertedIndex.h"
@@ -22,10 +21,8 @@ class Query : public Document {
   public:
     // Construtores
     Query(string query);
-
     // Gera coordenadas do vetor do documento
     virtual void makeCoords(InvertedIndex index, int N) override;
-
     // Faz similaridade com todos os documentos
     double cosSimilarityAll(vector<Document> docs);
 

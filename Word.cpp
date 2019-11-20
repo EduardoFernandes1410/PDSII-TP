@@ -1,12 +1,3 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <map>
-#include <unordered_map>
-#include <math.h>
-
-#include "InvertedIndex.h"
-#include "Document.h"
 #include "Word.h"
 
 using namespace std;

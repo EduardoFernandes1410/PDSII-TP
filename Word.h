@@ -1,13 +1,13 @@
 #ifndef WORD_H
 #define WORD_H
 
-#include <stdlib.h>
-#include <stdio.h>
 #include <string>
 #include <vector>
 #include <map>
 #include <unordered_map>
-
+#include "InvertedIndex.h"
+#include "Document.h"
+#include <math.h>
 using namespace std;
 
 class Document;
@@ -21,10 +21,8 @@ class Word {
     bool operator<(const Word &x) const;
     // Retorna o nome da palavra
     string name() const;
-
     // Retorna o 'tf' de uma palavra em funcao de um documento
     int tf(Document doc, InvertedIndex index) const;
-
     // Recebe o numero de documentos, e o indice invertido em questao
     double idf(int N, InvertedIndex index) const;
 
