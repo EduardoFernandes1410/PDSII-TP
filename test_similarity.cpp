@@ -60,19 +60,20 @@ int main (){
   }
 
 
-  Query queryDoc("A B");
-  queryDoc.makeCoords(index, (int)docs.size());
+  Query query("A B");
+  query.makeCoords(index, (int)docs.size());
   cout << "W_query: ";
-  for(auto w : queryDoc.coords() ){
+  for(auto w : query.coords() ){
     cout << w << " ";
   }
   cout << endl;
 
   cout << "CALCULANDO AS SIMILARIDADES: \n";
-  i = 1;
-  for( auto doc : docs){
-    cout << "sim(D" << i << ",Query): " << queryDoc.cosSimilarity(doc) << endl;
-    i++;
+  query.cosSimilarityAll(docs);
+
+  multiset<pair<double, Document> > sim = query.similarities();
+  for(auto it = sim.rbegin(); it != sim.rend(); it++){
+    cout << "sim(" << it->second.name() << ", Query): " << it->first << endl;
   }
   cout << endl;
 }
