@@ -1,14 +1,4 @@
-#include <iostream>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string>
-#include <vector>
-#include <set>
-#include <map>
 #include "InvertedIndex.h"
-#include "Document.h"
-#include "Word.h"
-using namespace std;
 
 // Construtor
 InvertedIndex::InvertedIndex(vector<Document> docs){

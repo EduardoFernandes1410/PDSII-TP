@@ -1,44 +1,38 @@
 #ifndef DOCUMENT_H
 #define DOCUMENT_H
 
-#include <stdlib.h>
-#include <stdio.h>
 #include <string>
 #include <vector>
 #include <map>
+#include <math.h>
 #include <unordered_map>
-
+#include <fstream>
+#include <locale>
+#include "InvertedIndex.h"
+#include "Word.h"
 using namespace std;
 
 class Word;
 class InvertedIndex;
 
-class Document{
+class Document {
   public:
-    // Construtores
+    // Construtor vazio
     Document();
-
+    // Construtor usando path para arquivo
     Document(string path);
-
-    Document(string query, bool flag);
-
     // Operador < para ser possivel colocar em um set
     bool operator<(const Document &x) const;
-
-    // Retorna as palavras que o documento contem
-    vector<string> words() const;
-
-    // Retorna nome do documento
-    string name() const;
-
     // PRE-REQUISITO: makeCoords já foi executado antes
     double cosSimilarity(Document &query);
-
     // Gera coordenadas do vetor do documento
     virtual void makeCoords(InvertedIndex index, int N);
-
-    // TIRAR ISSO DEPOIS
+    // Retorna o vetor de coordenadas do documento
     vector<double> coords() const;
+    // Retorna as palavras que o documento contem
+    vector<string> words() const;
+    // Retorna nome do documento
+    string name() const;
 
   protected:
     // Nome do documento

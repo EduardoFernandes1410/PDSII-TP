@@ -1,13 +1,12 @@
 #ifndef QUERY_H
 #define QUERY_H
 
-#include <stdlib.h>
-#include <stdio.h>
 #include <string>
 #include <vector>
 #include <map>
 #include <set>
 #include <utility>
+#include <locale>
 #include <unordered_map>
 #include "Word.h"
 #include "InvertedIndex.h"
@@ -22,16 +21,16 @@ class Query : public Document {
   public:
     // Construtores
     Query(string query);
-
-    // Gera coordenadas do vetor do documento
+    // Gera coordenadas do vetor da query
     virtual void makeCoords(InvertedIndex index, int N) override;
-
     // Faz similaridade com todos os documentos
-    double cosSimilarityAll(vector<Document> docs);
+    double cosSimilarityAll(vector<Document> &docs);
+    // Retorna multiset de similaridades
+    multiset<pair<double, Document> > similarities() const;
 
   private:
     // Guarda as similaridades com todos os documentos
-    set<pair<double, Document> > similarities;
+    multiset<pair<double, Document> > similarities_;
 };
 
 #endif
