@@ -33,9 +33,9 @@ bool Document::operator<(const Document &x) const {
 }
 
 // N eh o numero de documentos em questao
-void Document::makeCoords(InvertedIndex index, int N){
-  for(auto word : index.vocabulary() ){
-    this->coords_.push_back(word.tf(*this, index) * word.idf(N, index));
+void Document::makeCoords(InvertedIndex &index, int N){
+  for(auto &word : index.index()) {
+    this->coords_.push_back(index.getTf(word.first, *this) * index.getIdf(word.first, N));
   }
 }
 
@@ -44,7 +44,7 @@ double Document::cosSimilarity(Document &query){
   double W_dj, W_query;
 
   int i = 0;
-  for(auto it : this->coords_ ){
+  for(auto &it : this->coords_ ){
     W_dj = it;
     W_query = query.coords_[i];
     numerator += (W_dj * W_query);
@@ -55,7 +55,7 @@ double Document::cosSimilarity(Document &query){
   }
   denominator = (sqrt(denominatorPt1)*sqrt(denominatorPt2));
 
-  return (numerator/denominator);
+  return (denominator != 0) ? (numerator / denominator) : 0;
 }
 
 // Retorna o vetor de coordenadas do documento

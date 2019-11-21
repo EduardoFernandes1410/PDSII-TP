@@ -8,7 +8,6 @@
 #include <utility>
 #include <locale>
 #include <unordered_map>
-#include "Word.h"
 #include "InvertedIndex.h"
 #include "Document.h"
 using namespace std;
@@ -22,7 +21,7 @@ class Query : public Document {
     // Construtores
     Query(string query);
     // Gera coordenadas do vetor da query
-    virtual void makeCoords(InvertedIndex index, int N) override;
+    virtual void makeCoords(InvertedIndex &index, int N) override;
     // Faz similaridade com todos os documentos
     double cosSimilarityAll(vector<Document> &docs);
     // Retorna multiset de similaridades
