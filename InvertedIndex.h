@@ -25,6 +25,8 @@ class InvertedIndex{
 
   private:
     map<string, map<Document, int> > index_;
+
+  friend class Test;
 };
 
 #endif
