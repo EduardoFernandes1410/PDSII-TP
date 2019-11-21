@@ -10,13 +10,20 @@ InvertedIndex::InvertedIndex(vector<Document> &docs){
 }
 
 // Retorna o indice
-unordered_map<string, map<Document, int> > InvertedIndex::index() {
+map<string, map<Document, int> > InvertedIndex::index() {
   return this->index_;
 }
 
 // Retorna tf da palavra alvo em funcao do arquivo dado
 int InvertedIndex::getTf(string target, Document &doc) {
-  return this->index_[target][doc];
+  try {
+    // Se o documento contem a palavra, retorna tf
+    int tf = this->index_[target].at(doc);
+    return tf;
+  } catch(...) {
+    // Se nao contem, retorna 0
+    return 0;
+  }
 }
 
 double InvertedIndex::getIdf(string target, int N) {

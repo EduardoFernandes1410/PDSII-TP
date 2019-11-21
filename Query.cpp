@@ -9,7 +9,7 @@ Query::Query(string query){
     if(isalpha(query[i]) || isdigit(query[i]))
       new_word.push_back(tolower(query[i], loc));
 
-    else if(query[i] == ' ' ){
+    else if(query[i] == ' '){
       if(new_word != "") (this->words_.push_back(new_word));
       new_word.clear();
     }
@@ -26,7 +26,7 @@ void Query::makeCoords(InvertedIndex &index, int N) {
   InvertedIndex queryIndex(querySet);
 
   for(auto &word : index.index()) {
-    this->coords_.push_back(index.getTf(word.first, *this) * index.getIdf(word.first, N));
+    this->coords_.push_back(queryIndex.getTf(word.first, *this) * index.getIdf(word.first, N));
   }
 }
 

@@ -32,8 +32,10 @@ vector<Document> getDocuments(vector<string> &paths) {
   vector<Document> docs;
 
   for(auto &path : paths) {
-    Document doc(path);
-    docs.push_back(doc);
+    try {
+      Document doc(path);
+      docs.push_back(doc);
+    } catch(...) {}
   }
 
   return docs;
@@ -49,9 +51,10 @@ void calculateCoordsDocs(InvertedIndex &index, vector<Document> &docs) {
 void displayResults(Query &query) {
   multiset<pair<double, Document> > sim = query.similarities();
 
+  cout << "Aqui estão os seus resultados:" << endl << endl;
   int i = 0;
-  for(auto it = sim.rbegin(); it != sim.rend(), i < 10; ++it, ++i){
-    cout << fixed << setprecision(3) << "(" << it->first << ") - " << it->second.name() << endl;
+  for(auto it = sim.rbegin(); it != sim.rend() && i < 10; ++it, ++i){
+    cout << fixed << setprecision(4) << "(" << it->first << ") - " << it->second.name() << endl;
   }
 }
 
@@ -60,7 +63,8 @@ void getQuery(InvertedIndex index, vector<Document> docs) {
   string search;
 
   cout << "Insira a sua busca: ";
-  cin >> search;
+  getline(cin, search);
+  cout << "Pesquisando..." << endl << endl;
 
   Query query(search);
   query.makeCoords(index, (int)docs.size());
@@ -70,6 +74,9 @@ void getQuery(InvertedIndex index, vector<Document> docs) {
 }
 
 int main() {
+  cout << "===== BEM VINDO AO BUSCA1 =====" << endl;
+  cout << "Aguarde enquanto geramos o índice de busca..." << endl << endl;
+
   // Obtem os paths de todos os arquivos do dataset
   vector<string> paths = getPaths();
   // for(auto path : paths)
@@ -83,7 +90,7 @@ int main() {
   // Cria indice invertido
   InvertedIndex index(docs);
   // for(auto k : index.index()) {
-  //   cout << k.first.name() << endl;
+  //   cout << k.first << endl;
   //
   //   for(auto v : k.second) {
   //     cout << "\t" << v.first.name() << " - " << v.second << endl;
@@ -91,7 +98,7 @@ int main() {
   // }
 
   // Calcula as coordenadas dos documentos
-  // calculateCoordsDocs(index, docs);
+  calculateCoordsDocs(index, docs);
   // int i = 0;
   // for(auto doc : docs){
   //   cout << "W_D" << i << ": ";
@@ -103,5 +110,5 @@ int main() {
   // }
 
   // Gera query e exibe os resultados
-  // getQuery(index, docs);
+  getQuery(index, docs);
 }

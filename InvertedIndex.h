@@ -18,14 +18,14 @@ class InvertedIndex{
     // Recebe um vetor com os documentos e gera o indice invertido
     InvertedIndex(vector<Document> &docs);
     // Retorna o index
-    unordered_map<string, map<Document, int> > index();
+    map<string, map<Document, int> > index();
     // Retorna tf de dada palavra em dado documento
     int getTf(string target, Document &doc);
     // Retorna o idf de uma palavra
     double getIdf(string target, int N);
 
   private:
-    unordered_map<string, map<Document, int> > index_;
+    map<string, map<Document, int> > index_;
 };
 
 #endif
