@@ -18,7 +18,7 @@ Document::Document(string path){
 
   while(fin >> word) {
     new_word.clear();
-    for(int i = 0; i < word.size(); i++) {
+    for(int i = 0; i < (int) word.size(); i++) {
       if(isalpha(word[i]) || isdigit(word[i]))
         new_word.push_back(tolower(word[i], loc));
     }

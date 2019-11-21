@@ -9,10 +9,9 @@
 using namespace std;
 
 // Gera vetor com os paths de todos os arquivos do dateset
-vector<string> getPaths() {
-  vector<string> paths;
+void getPaths(vector<string> &paths) {
   string path;
-  fstream fin("input.txt");
+  fstream fin("../input.txt");
 
   if(!fin.is_open()) {
     throw invalid_argument("input file not found");
@@ -22,22 +21,16 @@ vector<string> getPaths() {
     paths.push_back(path);
   }
   fin.close();
-
-  return paths;
 }
 
 // Gera vetor de documentos do dataset
-vector<Document> getDocuments(vector<string> &paths) {
-  vector<Document> docs;
-
+void getDocuments(vector<string> &paths, vector<Document> &docs) {
   for(auto &path : paths) {
     try {
       Document doc(path);
       docs.push_back(doc);
     } catch(...) {}
   }
-
-  return docs;
 }
 
 // Calcula as coordenadas de cada documento do dataset
@@ -47,29 +40,41 @@ void calculateCoordsDocs(InvertedIndex &index, vector<Document> &docs) {
 }
 
 // Exibe resultados da busca
-void displayResults(Query &query) {
+void displayResults(Query &query, int numRes) {
   multiset<pair<double, Document> > sim = query.similarities();
 
-  cout << "Aqui estão os seus resultados:" << endl << endl;
+  if(sim.rbegin()->first == 0)
+    cout << "Nenhum resultado encontrado." << endl;
+  else
+    cout << "Aqui estão os seus resultados:" << endl << endl;
+
   int i = 0;
-  for(auto it = sim.rbegin(); it != sim.rend() && i < 10; ++it, ++i){
-    cout << fixed << setprecision(4) << "(" << it->first << ") - " << it->second.name() << endl;
+  for(auto it = sim.rbegin(); it != sim.rend() && i < numRes; ++it, ++i){
+    if(it->first > 0.0)
+      cout << fixed << setprecision(4) << "(" << it->first << ") - " << it->second.name() << endl;
+    else
+      break;
   }
 }
 
 // Gera query
 void getQuery(InvertedIndex index, vector<Document> docs) {
   string search;
+  int numRes;
 
   cout << "Insira a sua busca: ";
   getline(cin, search);
+
+  cout << "Insira o numero máximo de resutados que deseja ver: ";
+  cin >> numRes;
+
   cout << "Pesquisando..." << endl << endl;
 
   Query query(search);
   query.makeCoords(index, (int)docs.size());
   query.cosSimilarityAll(docs);
 
-  displayResults(query);
+  displayResults(query, numRes);
 }
 
 int main() {
@@ -77,12 +82,19 @@ int main() {
   cout << "Aguarde enquanto geramos o índice de busca..." << endl << endl;
 
   // Obtem os paths de todos os arquivos do dataset
-  vector<string> paths = getPaths();
+  vector<string> paths;
+  try {
+    getPaths(paths);
+  } catch(...) {
+    cout << "ERRO! Não foi possível abrir o arquivo com o caminho para o dataset." << endl;
+    exit(-1);
+  }
   // for(auto path : paths)
   //   cout << path << endl;
 
   // Obtem lista de Documentos
-  vector<Document> docs = getDocuments(paths);
+  vector<Document> docs;
+  getDocuments(paths, docs);
   // for(auto doc : docs)
   //   cout << doc.name() << endl;
 

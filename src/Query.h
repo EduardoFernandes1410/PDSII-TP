@@ -23,7 +23,7 @@ class Query : public Document {
     // Gera coordenadas do vetor da query
     virtual void makeCoords(InvertedIndex &index, int N) override;
     // Faz similaridade com todos os documentos
-    double cosSimilarityAll(vector<Document> &docs);
+    void cosSimilarityAll(vector<Document> &docs);
     // Retorna multiset de similaridades
     multiset<pair<double, Document> > similarities() const;
 
