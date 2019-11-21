@@ -18,15 +18,15 @@ Query::Query(string query){
 }
 
 // Gera as coordenadas do vetor da query
-void Query::makeCoords(InvertedIndex index, int N) {
+void Query::makeCoords(InvertedIndex &index, int N) {
   // Cria novo invertedIndex apenas com as palavras da query
   vector<Document> querySet;
   querySet.push_back(*this);
 
   InvertedIndex queryIndex(querySet);
 
-  for(auto word : index.vocabulary()) {
-    this->coords_.push_back(word.tf(*this, queryIndex) * word.idf(N, index));
+  for(auto &word : index.index()) {
+    this->coords_.push_back(word.first.tf(*this, queryIndex) * word.first.idf(N, index));
   }
 }
 
@@ -34,7 +34,7 @@ void Query::makeCoords(InvertedIndex index, int N) {
 double Query::cosSimilarityAll(vector<Document> &docs) {
   double curSim;
 
-  for(auto doc : docs) {
+  for(auto &doc : docs) {
     curSim = this->cosSimilarity(doc);
     this->similarities_.emplace(curSim, doc);
   }

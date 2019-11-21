@@ -59,8 +59,7 @@ int main (){
     i++;
   }
 
-
-  Query query("A B");
+  Query query("D");
   query.makeCoords(index, (int)docs.size());
   cout << "W_query: ";
   for(auto w : query.coords() ){

@@ -15,19 +15,16 @@ class Document;
 class InvertedIndex{
   public:
     // Recebe um vetor com os documentos e gera o indice invertido
-    InvertedIndex(vector<Document> docs);
+    InvertedIndex(vector<Document> &docs);
     // Retorna o index
     map<Word, map<Document, int> > index();
-    // Retorna vocabulario
-    set<Word> vocabulary();
+    // Retorna tf de dada palavra em dado documento
+    int getTf(Word target, Document &doc);
     // Retorna um int correspondente a quantidade de documentos que Word aparece
     int getNx(Word target);
-    // Retorna tf de dada palavra em dado documento
-    int getTf(Word target, Document doc);
 
   private:
     map<Word, map<Document, int> > index_;
-    set<Word> vocabulary_;
 };
 
 #endif

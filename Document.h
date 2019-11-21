@@ -26,7 +26,7 @@ class Document {
     // PRE-REQUISITO: makeCoords já foi executado antes
     double cosSimilarity(Document &query);
     // Gera coordenadas do vetor do documento
-    virtual void makeCoords(InvertedIndex index, int N);
+    virtual void makeCoords(InvertedIndex &index, int N);
     // Retorna o vetor de coordenadas do documento
     vector<double> coords() const;
     // Retorna as palavras que o documento contem

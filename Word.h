@@ -22,9 +22,9 @@ class Word {
     // Retorna o nome da palavra
     string name() const;
     // Retorna o 'tf' de uma palavra em funcao de um documento
-    int tf(Document doc, InvertedIndex index) const;
+    int tf(Document &doc, InvertedIndex &index) const;
     // Recebe o numero de documentos, e o indice invertido em questao
-    double idf(int N, InvertedIndex index) const;
+    double idf(int N, InvertedIndex &index) const;
 
   private:
     string name_;
