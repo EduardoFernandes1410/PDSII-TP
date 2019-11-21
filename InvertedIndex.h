@@ -4,9 +4,10 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <unordered_map>
 #include <set>
 #include "Document.h"
-#include "Word.h"
+// #include "Word.h"
 using namespace std;
 
 class Word;
@@ -17,14 +18,14 @@ class InvertedIndex{
     // Recebe um vetor com os documentos e gera o indice invertido
     InvertedIndex(vector<Document> &docs);
     // Retorna o index
-    map<Word, map<Document, int> > index();
+    unordered_map<string, map<Document, int> > index();
     // Retorna tf de dada palavra em dado documento
-    int getTf(Word target, Document &doc);
-    // Retorna um int correspondente a quantidade de documentos que Word aparece
-    int getNx(Word target);
+    int getTf(string target, Document &doc);
+    // Retorna o idf de uma palavra
+    double getIdf(string target, int N);
 
   private:
-    map<Word, map<Document, int> > index_;
+    unordered_map<string, map<Document, int> > index_;
 };
 
 #endif

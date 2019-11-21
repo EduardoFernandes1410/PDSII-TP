@@ -34,8 +34,8 @@ bool Document::operator<(const Document &x) const {
 
 // N eh o numero de documentos em questao
 void Document::makeCoords(InvertedIndex &index, int N){
-  for(auto &word : index.index() ){
-    this->coords_.push_back(word.first.tf(*this, index) * word.first.idf(N, index));
+  for(auto &word : index.index()) {
+    this->coords_.push_back(index.getTf(word.first, *this) * index.getIdf(word.first, N));
   }
 }
 

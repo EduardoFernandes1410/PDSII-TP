@@ -4,7 +4,7 @@
 #include <string>
 #include <iomanip>
 #include "Document.h"
-#include "Word.h"
+// #include "Word.h"
 #include "Query.h"
 #include "InvertedIndex.h"
 using namespace std;
@@ -91,7 +91,7 @@ int main() {
   // }
 
   // Calcula as coordenadas dos documentos
-  calculateCoordsDocs(index, docs);
+  // calculateCoordsDocs(index, docs);
   // int i = 0;
   // for(auto doc : docs){
   //   cout << "W_D" << i << ": ";
@@ -103,5 +103,5 @@ int main() {
   // }
 
   // Gera query e exibe os resultados
-  getQuery(index, docs);
+  // getQuery(index, docs);
 }

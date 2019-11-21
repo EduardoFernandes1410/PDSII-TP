@@ -26,7 +26,7 @@ void Query::makeCoords(InvertedIndex &index, int N) {
   InvertedIndex queryIndex(querySet);
 
   for(auto &word : index.index()) {
-    this->coords_.push_back(word.first.tf(*this, queryIndex) * word.first.idf(N, index));
+    this->coords_.push_back(index.getTf(word.first, *this) * index.getIdf(word.first, N));
   }
 }
 

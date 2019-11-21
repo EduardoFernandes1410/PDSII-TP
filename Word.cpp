@@ -20,8 +20,3 @@ string Word::name() const {
 int Word::tf(Document &doc, InvertedIndex &index) const{
   return index.getTf(*this, doc);
 }
-
-double Word::idf(int N, InvertedIndex &index) const{
-  int nx = index.getNx(*this);
-  return (nx != 0) ? log((double) N / nx) : 0;
-}

@@ -2,29 +2,24 @@
 
 // Construtor
 InvertedIndex::InvertedIndex(vector<Document> &docs){
-  vector<string> words;
-
   for(auto &doc : docs) {
-    words = doc.words();
-
-    for(auto &word : words) {
-      Word w(word);
-      this->index_[w][doc] += 1;
-      // this->vocabulary_.insert(w);
+    for(auto &word : doc.words()) {
+      this->index_[word][doc] += 1;
     }
   }
 }
 
 // Retorna o indice
-map<Word, map<Document, int> > InvertedIndex::index() {
+unordered_map<string, map<Document, int> > InvertedIndex::index() {
   return this->index_;
 }
 
 // Retorna tf da palavra alvo em funcao do arquivo dado
-int InvertedIndex::getTf(Word target, Document &doc) {
+int InvertedIndex::getTf(string target, Document &doc) {
   return this->index_[target][doc];
 }
 
-int InvertedIndex::getNx(Word target){
-  return this->index_[target].size();
+double InvertedIndex::getIdf(string target, int N) {
+  int nx = this->index_[target].size();
+  return (nx != 0) ? log((double) N / nx) : 0;
 }

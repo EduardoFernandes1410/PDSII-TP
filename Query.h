@@ -8,7 +8,7 @@
 #include <utility>
 #include <locale>
 #include <unordered_map>
-#include "Word.h"
+// #include "Word.h"
 #include "InvertedIndex.h"
 #include "Document.h"
 using namespace std;
