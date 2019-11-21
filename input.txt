@@ -6,3 +6,7 @@
 ./20_newsgroups/sci.electronics/54071
 ./20_newsgroups/sci.electronics/54206
 ./20_newsgroups/sci.electronics/53785
+./20_newsgroups/sci.electronics/53827
+./20_newsgroups/sci.electronics/53747
+./20_newsgroups/sci.electronics/54233
+
