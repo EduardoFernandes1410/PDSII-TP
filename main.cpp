@@ -12,7 +12,7 @@ using namespace std;
 vector<string> getPaths() {
   vector<string> paths;
   string path;
-  fstream fin("paths_name.txt");
+  fstream fin("input.txt");
 
   if(!fin.is_open()) {
     throw invalid_argument("input file not found");

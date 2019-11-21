@@ -1,7 +1,7 @@
 import os
 root_folder = "./20_newsgroups"
 folders = os.listdir(root_folder)
-f = open("paths_name.txt", "w")
+f = open("input.txt", "w")
 for folder in folders:
     arquivos = os.listdir(os.path.join(root_folder, folder))
     for arquivo in arquivos:
