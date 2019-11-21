@@ -9,7 +9,6 @@
 #include <fstream>
 #include <locale>
 #include "InvertedIndex.h"
-// #include "Word.h"
 using namespace std;
 
 class Word;

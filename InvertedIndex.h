@@ -7,7 +7,6 @@
 #include <unordered_map>
 #include <set>
 #include "Document.h"
-// #include "Word.h"
 using namespace std;
 
 class Word;

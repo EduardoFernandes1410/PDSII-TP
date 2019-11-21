@@ -4,7 +4,6 @@
 #include <string>
 #include <iomanip>
 #include "Document.h"
-// #include "Word.h"
 #include "Query.h"
 #include "InvertedIndex.h"
 using namespace std;
