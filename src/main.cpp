@@ -73,6 +73,7 @@ void runQuery(InvertedIndex index, vector<Document> docs) {
   int numMaxRes;
   locale loc;
 
+  // Obtem query do usuario
   while(ctrl == "s" || ctrl == "S") {
     cout << "Insira a sua busca: ";
     cin.sync();
@@ -88,10 +89,12 @@ void runQuery(InvertedIndex index, vector<Document> docs) {
 
     cout << "Pesquisando..." << endl << endl;
 
+    // Cria objeto query e calcula suas propriedades
     Query query(search);
     query.makeCoords(index, (int)docs.size());
     query.cosSimilarityAll(docs);
 
+    // Exibe os resultados da busca
     displayResults(query, numMaxRes);
 
     cout << "\nDeseja realizar mais uma busca? [S/n] ";
