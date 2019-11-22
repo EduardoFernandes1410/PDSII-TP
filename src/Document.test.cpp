@@ -89,7 +89,7 @@ TEST_SUITE("Document"){
     Document d2("./doc_pdf/d2.txt");
     Document d3("./doc_pdf/d3.txt");
     Document d4("./doc_pdf/d4.txt");
-    Document out_doc("./doc_pdf/out_doc.txt")
+    Document out_doc("./doc_pdf/out_doc.txt");
     vector<Document> docs;
     docs.push_back(d1);
     docs.push_back(d2);
@@ -100,7 +100,7 @@ TEST_SUITE("Document"){
     d2.makeCoords(index, 4);
     out_doc.makeCoords(index,4);
     CHECK(d1.cosSimilarity(out_doc) == 0);
-    CHECK(d1.cosSimilarity(d2) == 0.3)
+    CHECK(floor(d1.cosSimilarity(d2)*pow(10,8))/pow(10,8) == 0.29887432);
   }
   
   TEST_CASE("coords()"){
