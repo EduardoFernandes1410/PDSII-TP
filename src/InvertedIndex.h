@@ -15,6 +15,7 @@ class Document;
 class InvertedIndex{
   public:
     // Recebe um vetor com os documentos e gera o indice invertido
+    // PRE-REQUISITO: o vetor de documentos nao esta vazio
     InvertedIndex(vector<Document> &docs);
     // Retorna o index
     map<string, map<Document, int> > index();
