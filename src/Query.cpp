@@ -5,7 +5,7 @@ Query::Query(string query){
   string new_word;
   locale loc;
 
-  for(int i = 0; i < query.size(); i++){
+  for(int i = 0; i < (int) query.size(); i++){
     if(isalpha(query[i]) || isdigit(query[i]))
       new_word.push_back(tolower(query[i], loc));
 
@@ -31,7 +31,7 @@ void Query::makeCoords(InvertedIndex &index, int N) {
 }
 
 // Faz similaridade com todos os documentos
-double Query::cosSimilarityAll(vector<Document> &docs) {
+void Query::cosSimilarityAll(vector<Document> &docs) {
   double curSim;
 
   for(auto &doc : docs) {

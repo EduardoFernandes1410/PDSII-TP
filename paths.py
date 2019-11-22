@@ -6,5 +6,5 @@ for folder in folders:
     arquivos = os.listdir(os.path.join(root_folder, folder))
     for arquivo in arquivos:
         print(arquivo)
-        f.write((os.path.join(root_folder,folder, arquivo) + "\n"))
+        f.write((os.path.join("." + root_folder,folder, arquivo) + "\n"))
 
