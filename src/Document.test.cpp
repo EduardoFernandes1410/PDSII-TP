@@ -1,4 +1,4 @@
-	#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 
 #include "Document.h"
 #include "doctest.h"
@@ -25,20 +25,20 @@ class Test{
 TEST_SUITE("Document"){
   TEST_CASE("Document(string path)"){
 		SUBCASE("Normal document"){
-		  Document x("./doc_pdf/d1.txt");
-		  CHECK(Test::name(x) == "./doc_pdf/d1.txt");
+		  Document x("../test_documents/d1.txt");
+		  CHECK(Test::name(x) == "../test_documents/d1.txt");
 		  CHECK(Test::words(x)[0] == "a");
 		  CHECK(Test::words(x)[1] == "a");
 			CHECK(Test::words(x)[2] == "a");
 			CHECK(Test::words(x)[3] == "b");
 		}
 		SUBCASE("Empty document"){
-			Document x("./doc_pdf/empty_doc.txt");
+			Document x("../test_documents/empty_doc.txt");
 			CHECK(Test::words(x).size() == 0);
 		}
 
 		SUBCASE("Invalid path"){
-			int n;			
+			int n;
 			try{
 				Document x("invalid path");
 			}catch(...){
@@ -50,18 +50,18 @@ TEST_SUITE("Document"){
   }
 
   TEST_CASE("operator <()"){
-    Document x("./doc_pdf/d1.txt");
-    Document y("./doc_pdf/d2.txt");
+    Document x("../test_documents/d1.txt");
+    Document y("../test_documents/d2.txt");
     CHECK(x<y);
 		CHECK(!(y<x));
   }
 
   TEST_CASE("makeCoords()"){
-    Document d1("./doc_pdf/d1.txt");
-    Document d2("./doc_pdf/d2.txt");
-    Document d3("./doc_pdf/d3.txt");
-    Document d4("./doc_pdf/d4.txt");
-		Document out_doc("./doc_pdf/out_doc.txt");
+    Document d1("../test_documents/d1.txt");
+    Document d2("../test_documents/d2.txt");
+    Document d3("../test_documents/d3.txt");
+    Document d4("../test_documents/d4.txt");
+		Document out_doc("../test_documents/out_doc.txt");
     vector<Document> docs;
     docs.push_back(d1);
     docs.push_back(d2);
@@ -85,11 +85,11 @@ TEST_SUITE("Document"){
   }
 
   TEST_CASE("cosSimilarity()"){
-    Document d1("./doc_pdf/d1.txt");
-    Document d2("./doc_pdf/d2.txt");
-    Document d3("./doc_pdf/d3.txt");
-    Document d4("./doc_pdf/d4.txt");
-    Document out_doc("./doc_pdf/out_doc.txt");
+    Document d1("../test_documents/d1.txt");
+    Document d2("../test_documents/d2.txt");
+    Document d3("../test_documents/d3.txt");
+    Document d4("../test_documents/d4.txt");
+    Document out_doc("../test_documents/out_doc.txt");
     vector<Document> docs;
     docs.push_back(d1);
     docs.push_back(d2);
@@ -102,12 +102,12 @@ TEST_SUITE("Document"){
     CHECK(d1.cosSimilarity(out_doc) == 0);
     CHECK(floor(d1.cosSimilarity(d2)*pow(10,8))/pow(10,8) == 0.29887432);
   }
-  
+
   TEST_CASE("coords()"){
-    Document d1("./doc_pdf/d1.txt");
-    Document d2("./doc_pdf/d2.txt");
-    Document d3("./doc_pdf/d3.txt");
-    Document d4("./doc_pdf/d4.txt");
+    Document d1("../test_documents/d1.txt");
+    Document d2("../test_documents/d2.txt");
+    Document d3("../test_documents/d3.txt");
+    Document d4("../test_documents/d4.txt");
     vector<Document> docs;
     docs.push_back(d1);
     docs.push_back(d2);
@@ -127,7 +127,7 @@ TEST_SUITE("Document"){
   }
 
   TEST_CASE("words()"){
-    Document d1("./doc_pdf/d1.txt");
+    Document d1("../test_documents/d1.txt");
     CHECK(d1.words()[0] == "a");
     CHECK(d1.words()[1] == "a");
     CHECK(d1.words()[2] == "a");
@@ -135,7 +135,7 @@ TEST_SUITE("Document"){
   }
 
   TEST_CASE("name()"){
-    Document d1("./doc_pdf/d1.txt");
-    CHECK(d1.name() == "./doc_pdf/d1.txt");
+    Document d1("../test_documents/d1.txt");
+    CHECK(d1.name() == "../test_documents/d1.txt");
   }
 }
