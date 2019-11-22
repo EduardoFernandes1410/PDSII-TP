@@ -40,6 +40,8 @@ class Document {
     vector<string> words_;
     // Guarda o vetor no R_n com a importância  do documento para cada P_i
     vector<double> coords_;
+
+  friend class Test;
 };
 
 #endif
