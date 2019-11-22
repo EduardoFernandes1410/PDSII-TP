@@ -36,7 +36,7 @@ void getDocuments(vector<string> &paths, vector<Document> &docs) {
 // Checa se algum documento foi indexado
 void checkDocuments(vector<Document> &docs) {
   if(docs.size() > 0) {
-    cout << "Sucesso: " << docs.size() << " documento(s) indexado(s)." << endl << endl;
+    cout << docs.size() << " documento(s) encontrados(s)..." << endl;
   } else {
     cout << "ERRO! Nenhum documento encontrado." << endl;
     exit(-1);
@@ -47,6 +47,8 @@ void checkDocuments(vector<Document> &docs) {
 void calculateCoordsDocs(InvertedIndex &index, vector<Document> &docs) {
   for(auto doc = docs.begin(); doc != docs.end(); ++doc)
     doc->makeCoords(index, (int)docs.size());
+
+  cout << "Indexação concluída com sucesso." << endl << endl;
 }
 
 // Exibe resultados da busca
