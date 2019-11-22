@@ -31,6 +31,8 @@ class Query : public Document {
   private:
     // Guarda as similaridades com todos os documentos
     multiset<pair<double, Document> > similarities_;
+  
+  friend class Test;
 };
 
 #endif
