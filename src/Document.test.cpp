@@ -63,13 +63,16 @@ TEST_SUITE("Document"){
     Document d4("../test_documents/d4.txt");
 		Document out_doc("../test_documents/out_doc.txt");
     vector<Document> docs;
+
     docs.push_back(d1);
     docs.push_back(d2);
     docs.push_back(d3);
     docs.push_back(d4);
+
     InvertedIndex index(docs);
     d1.makeCoords(index, 4);
     d2.makeCoords(index, 4);
+
     CHECK(floor(Test::coords(d1)[0] * pow(10,8) )/ pow(10,8) == 0.86304621);
     CHECK(floor(Test::coords(d1)[1] * pow(10,8) )/ pow(10,8) == 0.69314718);
     CHECK(floor(Test::coords(d1)[2] * pow(10,8) )/ pow(10,8) == 0);
@@ -91,14 +94,17 @@ TEST_SUITE("Document"){
     Document d4("../test_documents/d4.txt");
     Document out_doc("../test_documents/out_doc.txt");
     vector<Document> docs;
+
     docs.push_back(d1);
     docs.push_back(d2);
     docs.push_back(d3);
     docs.push_back(d4);
+
     InvertedIndex index(docs);
     d1.makeCoords(index, 4);
     d2.makeCoords(index, 4);
     out_doc.makeCoords(index,4);
+
     CHECK(d1.cosSimilarity(out_doc) == 0);
     CHECK(floor(d1.cosSimilarity(d2)*pow(10,8))/pow(10,8) == 0.29887432);
   }
@@ -109,6 +115,7 @@ TEST_SUITE("Document"){
     Document d3("../test_documents/d3.txt");
     Document d4("../test_documents/d4.txt");
     vector<Document> docs;
+
     docs.push_back(d1);
     docs.push_back(d2);
     docs.push_back(d3);
@@ -117,6 +124,7 @@ TEST_SUITE("Document"){
     InvertedIndex index(docs);
     d1.makeCoords(index, 4);
     d2.makeCoords(index, 4);
+    
     CHECK(floor(d1.coords()[0] * pow(10,8) )/ pow(10,8) == 0.86304621);
     CHECK(floor(d1.coords()[1] * pow(10,8) )/ pow(10,8) == 0.69314718);
     CHECK(floor(d1.coords()[2] * pow(10,8) )/ pow(10,8) == 0);
