@@ -84,6 +84,25 @@ TEST_SUITE("Document"){
 
   }
 
+  TEST_CASE("cosSimilarity()"){
+    Document d1("./doc_pdf/d1.txt");
+    Document d2("./doc_pdf/d2.txt");
+    Document d3("./doc_pdf/d3.txt");
+    Document d4("./doc_pdf/d4.txt");
+    Document out_doc("./doc_pdf/out_doc.txt")
+    vector<Document> docs;
+    docs.push_back(d1);
+    docs.push_back(d2);
+    docs.push_back(d3);
+    docs.push_back(d4);
+    InvertedIndex index(docs);
+    d1.makeCoords(index, 4);
+    d2.makeCoords(index, 4);
+    out_doc.makeCoords(index,4);
+    CHECK(d1.cosSimilarity(out_doc) == 0);
+    CHECK(d1.cosSimilarity(d2) == 0.3)
+  }
+  
   TEST_CASE("coords()"){
     Document d1("./doc_pdf/d1.txt");
     Document d2("./doc_pdf/d2.txt");
