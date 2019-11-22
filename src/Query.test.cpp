@@ -37,12 +37,6 @@ TEST_SUITE("Query"){
 		}
   }
 
-  TEST_CASE("operator <()"){
-    Document x("./doc_pdf/d1.txt");
-    Document y("./doc_pdf/d2.txt");
-    CHECK(x<y);
-		CHECK(!(y<x));
-  }
 
   TEST_CASE("makeCoords()"){
     Query query("A B");
