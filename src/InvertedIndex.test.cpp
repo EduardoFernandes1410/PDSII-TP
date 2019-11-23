@@ -84,6 +84,7 @@ TEST_SUITE("InvertedIndex") {
     vector<Document> docs;
     Document doc1("../test_documents/d1.txt");
     Document doc2("../test_documents/d2.txt");
+    Document doc3("../test_documents/d3.txt");
 
     docs.push_back(doc1);
     docs.push_back(doc2);
@@ -96,6 +97,12 @@ TEST_SUITE("InvertedIndex") {
     CHECK(i.getTf("b", doc2) == 0);
     CHECK(i.getTf("c", doc1) == 0);
     CHECK(i.getTf("c", doc2) == 1);
+
+    // Testa palavra fora do vocabulario
+    CHECK(i.getTf("d", doc1) == 0);
+
+    // Teste documento nao indexado
+    CHECK(i.getTf("a", doc3) == 0);
   }
 
   TEST_CASE("getIdf()") {
@@ -111,5 +118,8 @@ TEST_SUITE("InvertedIndex") {
     CHECK(i.getIdf("a", 2) == 0);
     CHECK(floor(i.getIdf("b", 2)*pow(10,8))/pow(10,8) == 0.69314718);
     CHECK(floor(i.getIdf("c", 2)*pow(10,8))/pow(10,8) == 0.69314718);
+
+    // Testa palavra fora do vocabulario
+    CHECK(floor(i.getIdf("d", 2)*pow(10,8))/pow(10,8) == 0.0);
   }
 }
