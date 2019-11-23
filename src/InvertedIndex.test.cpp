@@ -75,6 +75,7 @@ TEST_SUITE("InvertedIndex") {
 
         // Verifica se as listas de documentos sao iguais
         CHECK(docs1->first == docs2->first);
+        CHECK(docs1->second == docs2->second);
       }
     }
   }
